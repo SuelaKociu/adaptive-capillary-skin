@@ -3,27 +3,73 @@ name: reproducibility-smoke-test
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: acs-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+
       - name: Environment info
         run: |
           python --version
           python -m pip --version
-          python -c "import setuptools; print('setuptools', setuptools.__version__)"
-      - name: Install
+
+      - name: Install package and test dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          pip install -e .[dev]
-      - name: Repository integrity
+          python -m pip install -e '.[dev]'
+          python -m pip check
+
+      - name: Scientific repository consistency
         run: python scripts/validate_repository.py
+
       - name: Unit tests
-        run: pytest -q
+        run: python -m pytest -q
+
       - name: Reproduction smoke run
         run: python scripts/run_model.py --trials 20 --output ci_outputs
+
+      - name: Validate smoke output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('ci_outputs/simulation_summary.json')
+          if not p.is_file():
+              raise SystemExit('Smoke-run summary missing')
+          d = json.loads(p.read_text())
+          if d.get('trials_per_ensemble') != 20:
+              raise SystemExit('Unexpected smoke-run trial count')
+          for key in ('broad_prior_pass_rate', 'design_envelope_pass_rate'):
+              value = float(d[key])
+              if not 0.0 <= value <= 1.0:
+                  raise SystemExit(f'{key} outside [0,1]: {value}')
+          print('Smoke output OK:', d)
+          PY
+
+      - name: Preserve smoke outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acs-smoke-output-${{ github.run_id }}
+          path: ci_outputs/
+          if-no-files-found: ignore
+          retention-days: 14

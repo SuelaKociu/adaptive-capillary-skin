@@ -1,0 +1,68 @@
+name: release-integrity
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout frozen revision
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e '.[dev]'
+          python -m pip check
+
+      - name: Validate stored research package
+        run: python scripts/validate_repository.py
+
+      - name: Unit tests
+        run: python -m pytest -q
+
+      - name: Full deterministic reproduction
+        run: python scripts/run_model.py --trials 1000 --output release_reproduction
+
+      - name: Compare reproduced pass rates with archived summary
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          stored = json.loads(Path('data/simulation_summary.json').read_text())
+          reproduced = json.loads(Path('release_reproduction/simulation_summary.json').read_text())
+          if reproduced.get('trials_per_ensemble') != 1000:
+              raise SystemExit('Full reproduction did not run 1000 trials per ensemble')
+          for key in ('broad_prior_pass_rate', 'design_envelope_pass_rate'):
+              a = float(stored[key]); b = float(reproduced[key])
+              if not math.isclose(a, b, abs_tol=1e-12):
+                  raise SystemExit(f'{key} mismatch: stored={a}, reproduced={b}')
+          print('Full reproduction matches stored pass rates')
+          PY
+
+      - name: Generate release SHA-256 manifest
+        run: python scripts/generate_release_manifest.py --output SHA256SUMS.txt
+
+      - name: Upload release verification bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: acs-release-verification-${{ github.ref_name }}-${{ github.run_id }}
+          path: |
+            SHA256SUMS.txt
+            release_reproduction/
+          retention-days: 90

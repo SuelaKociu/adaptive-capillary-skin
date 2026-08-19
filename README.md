@@ -58,18 +58,21 @@ python -m venv .venv
 source .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
 
-python -m pip install --upgrade pip
-pip install -e .
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -e '.[dev]'
+python -m pip check
 python scripts/validate_repository.py
+python -m pytest -q
 python scripts/run_model.py --trials 1000 --output reproduced_outputs
-pytest -q
 ```
 
 Random seeds are retained in the Monte Carlo tables. Reproduction should be judged against the stored output distributions, not against a claim of physical validation.
 
-## Release integrity
+## Continuous verification
 
-[`SHA256SUMS.txt`](SHA256SUMS.txt) records SHA-256 digests for the computational outputs, publication figures, PDFs, virtual prototype, core model, experimental templates and provenance artifacts. Mutable landing-page and DOI metadata are intentionally excluded so a future DOI update does not invalidate the scientific-artifact manifest.
+The normal GitHub Actions workflow checks repository structure, metadata, stored-data consistency, unit tests and a short reproduction run on every push and pull request. It can also be started manually with `workflow_dispatch`.
+
+A separate `release-integrity` workflow is reserved for manual/tagged releases. It performs a full 1000 + 1000 trial reproduction and generates a SHA-256 manifest from the **exact frozen revision**. This avoids treating stale checksums from an evolving branch as evidence of integrity. See [`docs/release_process.md`](docs/release_process.md).
 
 ## Falsification gate
 
