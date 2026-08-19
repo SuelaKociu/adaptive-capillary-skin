@@ -1,0 +1,19 @@
+name: Research hypothesis / critique
+description: Propose a test, alternative mechanism, prior-art correction or falsification
+title: "[RESEARCH] "
+labels: ["research"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Hypothesis or critique
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or sources
+  - type: textarea
+    id: test
+    attributes:
+      label: What observation would discriminate between explanations?
