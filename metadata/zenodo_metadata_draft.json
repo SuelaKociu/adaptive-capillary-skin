@@ -1,0 +1,17 @@
+{
+  "title": "Adaptive Capillary Skin (ACS): Open Falsifiable Design of a Biomimetic Fluidic Material Integrating Water Transport, Hygromorphic Regulation, Evaporative Cooling, Electrokinetic Self-Sensing, and Damage-Triggered Hydraulic Isolation",
+  "upload_type": "publication",
+  "publication_type": "technicalnote",
+  "creators": [
+    {"name": "Kociu, Suela", "affiliation": "Independent Researcher"}
+  ],
+  "description": "Open computational design disclosure and falsification protocol for Adaptive Capillary Skin (ACS). The package contains no physical experimental measurements; all reported numerical results are virtual predictions intended to define build specifications and preregistered rejection criteria.",
+  "keywords": [
+    "biomimetics", "capillary networks", "hygromorphic materials", "hydrovoltaics",
+    "self-healing materials", "damage isolation", "atmospheric water", "evaporative cooling",
+    "falsification", "open hardware"
+  ],
+  "version": "0.1",
+  "language": "eng",
+  "notes": "Suggested metadata only. Confirm license, affiliation, ORCID and final title before deposition."
+}

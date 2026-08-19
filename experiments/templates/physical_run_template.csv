@@ -1,0 +1,2 @@
+time_s,specimen_id,condition,useful_outlet_flow_mL_s,leak_flow_mL_s,inlet_pressure_Pa,damage_pressure_Pa,temperature_C,RH_pct,notes
+,,,,,,,,,

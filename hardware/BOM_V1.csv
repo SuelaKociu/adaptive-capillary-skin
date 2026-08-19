@@ -1,0 +1,11 @@
+component,candidate specification,purpose,status
+transparent network body,"clear acrylic/PMMA, glass, or transparent microfluidic polymer",visualize flow paths,candidate only
+channel layer,"machined, laser-cut laminate, or microfluidic fabrication appropriate to scale",redundant hydraulic network,candidate only
+working fluid,water; optional inert visible dye,hydraulic visualization,benign baseline
+isolation collar,water-swelling hydrogel formulation to be characterized,damage-triggered restriction,experimental variable
+control collar,non-swelling geometry-matched insert,negative control,required
+inlet reservoir,constant-head or monitored reservoir,controlled hydraulic driving condition,required
+leak collector,weighed container or calibrated volume collection,quantify loss,required
+useful outlet collector,weighed container or calibrated volume collection,quantify retained flow,required
+camera,fixed-position camera or microscope depending scale,time-resolved visual record,recommended
+pressure sensor,low-range differential sensor if available,pressure-state measurement,optional Stage 0

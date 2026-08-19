@@ -1,0 +1,14 @@
+{
+  "specimen_id": "ACS001",
+  "fabrication_date": "YYYY-MM-DD",
+  "operator": "",
+  "network_geometry_version": "V1",
+  "isolation_material": "",
+  "control_type": "active|non-swelling|no-collar",
+  "damage_geometry": "",
+  "fluid_composition": "water",
+  "instrumentation": [],
+  "calibration_files": [],
+  "protocol_version": "v0.1.0",
+  "deviations_from_protocol": ""
+}
