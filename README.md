@@ -30,6 +30,8 @@ ACS is published as an open scientific design, not as a finished device. The goa
 
 The supplied v0.1 model translates the damage-isolation hypothesis into a low-order redundant hydraulic network. Under broad parameter sampling, the model frequently fails the complete gate. A refined design envelope derived from those failures performs far more robustly. These outputs define **candidate engineering requirements**, not measured device performance.
 
+**Important model boundary:** v0.1 imposes the inlet-to-outlet pressure difference. It tests damage isolation and rerouting under a supplied hydraulic driving force; it does not yet simulate how a pump-free physical ACS would establish that pressure through capillarity, wetting, evaporation, gravity or atmospheric-water capture.
+
 The numerical tables used in the manuscripts are available in [`data/`](data/). The decisive next step is a physical transparent-flow prototype tested under the preregistered protocol in [`docs/physical_validation_protocol.md`](docs/physical_validation_protocol.md).
 
 ## Repository map
@@ -46,7 +48,7 @@ The numerical tables used in the manuscripts are available in [`data/`](data/). 
 | [`hardware/`](hardware/) | V1 physical-prototype specification and candidate bill of materials |
 | [`experiments/`](experiments/) | Preregistered physical-test templates |
 | [`provenance/`](provenance/) | Human–AI contribution trace and contribution matrix |
-| [`metadata/`](metadata/) | Zenodo metadata draft |
+| [`metadata/`](metadata/) | Zenodo metadata drafts |
 
 ## Reproduce the computational model
 
@@ -54,15 +56,20 @@ The numerical tables used in the manuscripts are available in [`data/`](data/). 
 python -m venv .venv
 # Linux/macOS
 source .venv/bin/activate
-# Windows PowerShell: .venv\\Scripts\\Activate.ps1
+# Windows PowerShell: .venv\Scripts\Activate.ps1
 
 python -m pip install --upgrade pip
 pip install -e .
+python scripts/validate_repository.py
 python scripts/run_model.py --trials 1000 --output reproduced_outputs
 pytest -q
 ```
 
 Random seeds are retained in the Monte Carlo tables. Reproduction should be judged against the stored output distributions, not against a claim of physical validation.
+
+## Release integrity
+
+[`SHA256SUMS.txt`](SHA256SUMS.txt) records SHA-256 digests for the computational outputs, publication figures, PDFs, virtual prototype, core model, experimental templates and provenance artifacts. Mutable landing-page and DOI metadata are intentionally excluded so a future DOI update does not invalidate the scientific-artifact manifest.
 
 ## Falsification gate
 
@@ -87,11 +94,15 @@ Start here:
 
 ## Citation
 
-Use [`CITATION.cff`](CITATION.cff). Once a Zenodo DOI is assigned, the DOI should be added to this README, `CITATION.cff`, `.zenodo.json`, and the PDF title pages.
+Use [`CITATION.cff`](CITATION.cff). Once a Zenodo DOI is assigned, add it to this README, `CITATION.cff`, the final Zenodo metadata and the PDF title pages.
 
 Suggested citation before DOI assignment:
 
 > Kociu, S. (2026). *Adaptive Capillary Skin (ACS): Open Computational Design, Falsification Framework, and Human–AI Collaborative Research Record*, v0.1.0.
+
+### Zenodo note
+
+This repository intentionally uses **mixed file-level licenses**: MIT for code and CC BY 4.0 for non-code research content. For the first archival record, a **manual Zenodo deposit** is recommended so both licenses can be declared accurately. The working metadata is in [`metadata/zenodo_metadata_draft.json`](metadata/zenodo_metadata_draft.json). A GitHub-integration draft is retained only as reference in [`metadata/zenodo_github_integration_draft.json`](metadata/zenodo_github_integration_draft.json).
 
 ## Authorship and AI disclosure
 

@@ -9,9 +9,9 @@
   "keywords": [
     "biomimetics", "capillary networks", "hygromorphic materials", "hydrovoltaics",
     "self-healing materials", "damage isolation", "atmospheric water", "evaporative cooling",
-    "falsification", "open hardware"
+    "falsification", "open hardware", "human-AI collaboration"
   ],
-  "version": "0.1",
+  "version": "0.1.0",
   "language": "eng",
-  "notes": "Suggested metadata only. Confirm license, affiliation, ORCID and final title before deposition."
+  "notes": "Manual Zenodo-deposit metadata draft. The repository contains mixed file-level licensing: MIT for code and CC BY 4.0 for text, figures, data, video and reports. Declare both licenses in the Zenodo deposit interface before publication. Confirm ORCID and final title before deposition."
 }

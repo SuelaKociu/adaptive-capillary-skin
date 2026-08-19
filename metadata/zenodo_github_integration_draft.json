@@ -1,0 +1,11 @@
+{
+  "title": "Adaptive Capillary Skin (ACS): Open Falsifiable Design of a Biomimetic Fluidic Material Integrating Water Transport, Hygromorphic Regulation, Evaporative Cooling, Electrokinetic Self-Sensing, and Damage-Triggered Hydraulic Isolation",
+  "upload_type": "publication",
+  "publication_type": "technicalnote",
+  "creators": [{"name":"Kociu, Suela","affiliation":"Independent Researcher"}],
+  "description": "Draft metadata retained for reference only. Do not use this file for automatic GitHub-to-Zenodo archiving without first resolving mixed-license metadata and choosing whether the archived object is software or a technical-note research package.",
+  "keywords": ["biomimetics","capillary networks","hygromorphic materials","hydrovoltaics","self-healing materials","damage isolation","atmospheric water","evaporative cooling","falsification","open hardware","human-AI collaboration"],
+  "version":"0.1.0",
+  "language":"eng",
+  "notes":"DRAFT ONLY. The repository uses MIT for code and CC BY 4.0 for non-code research content. Zenodo supports mixed-license deposits through its deposit interface; use the manual metadata draft in metadata/zenodo_metadata_draft.json for the archival research record."
+}
