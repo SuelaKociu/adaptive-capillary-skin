@@ -1,0 +1,10 @@
+# Licensing scope
+
+Copyright (c) 2026 Suela Kociu.
+
+This repository uses two open licenses:
+
+1. Source code, scripts, tests and CI configuration are licensed under the MIT License. See `LICENSES/MIT.txt`.
+2. Papers, documentation, figures, computational datasets, metadata and video are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). See `LICENSES/CC-BY-4.0.txt`.
+
+No patentability, freedom-to-operate, safety, medical, engineering-performance or fitness-for-purpose warranty is made. Computational outputs are not physical measurements.

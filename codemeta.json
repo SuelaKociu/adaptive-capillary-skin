@@ -1,0 +1,13 @@
+{
+  "@context":"https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type":"SoftwareSourceCode",
+  "name":"Adaptive Capillary Skin (ACS) computational model",
+  "version":"0.1.0",
+  "dateCreated":"2026-08-19",
+  "dateModified":"2026-08-19",
+  "author":[{"@type":"Person","givenName":"Suela","familyName":"Kociu"}],
+  "description":"Low-order computational and falsification model for Adaptive Capillary Skin. Virtual predictions only.",
+  "programmingLanguage":"Python 3",
+  "license":"https://spdx.org/licenses/MIT.html",
+  "keywords":["biomimetics","capillary network","damage isolation","falsification","human-AI collaboration"]
+}

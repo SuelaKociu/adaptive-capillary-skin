@@ -1,0 +1,7 @@
+Metric,Value
+Nominal leak reduction (%),92.79390613949963
+Nominal useful-flow retention (%),97.37640170796469
+Nominal 80% isolation time (s),276.0
+Nominal virtual sensor SNR,235.145886755736
+Broad-prior pass rate (%),27.3
+Design-envelope pass rate (%),99.7

@@ -1,0 +1,7 @@
+{
+  "status":"COMPUTATIONAL / VIRTUAL ONLY - NOT PHYSICAL EXPERIMENTS",
+  "nominal":{"leak_reduction_pct":92.79390613949963,"flow_retention_pct":97.37640170796469,"isolation_time_s":276.0,"observed_virtual_sensor_snr":235.145886755736},
+  "broad_prior_pass_rate":0.273,
+  "design_envelope_pass_rate":0.997,
+  "falsification_gate":{"leak_reduction_pct_min":80,"isolation_time_s_max":600,"flow_retention_pct_min":70,"sensor_effect_sigma_min":5}
+}
